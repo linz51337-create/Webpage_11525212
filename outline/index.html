@@ -1,477 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="藍天咖啡，為手沖咖啡愛好者挑選當季精品咖啡豆，讓每一杯都清澈、明亮、值得細品。">
-  <title>藍天咖啡｜讓風味，慢慢抵達</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10100f">
+  <meta name="description" content="牛奶咖啡，為喜愛沖泡咖啡的人帶來濃厚、飽滿而細緻的精品咖啡豆。">
+  <title>牛奶咖啡｜濃厚有度，回甘有餘</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@500;600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --navy: #062742;
-      --blue: #0c5b95;
-      --sky: #75c6e8;
-      --mist: #eaf5f7;
-      --cream: #fbfaf6;
-      --ink: #122534;
-      --muted: #607482;
-      --line: #d7e4e8;
-      --sand: #e5b66b;
-      --shadow: 0 18px 50px rgba(6, 39, 66, .13);
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: var(--cream);
-      font-family: "Noto Sans TC", sans-serif;
-      font-size: 16px;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button, input { font: inherit; }
-    button { cursor: pointer; }
-    .wrap { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
-    .serif { font-family: "Noto Serif TC", serif; }
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 0 13px;
-      color: var(--blue);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .18em;
-    }
-    .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; }
-    .section-title {
-      margin: 0;
-      font: 700 clamp(30px, 4vw, 46px)/1.28 "Noto Serif TC", serif;
-      letter-spacing: .035em;
-    }
-    .section-title em { color: var(--blue); font-style: normal; }
-    .section-copy { max-width: 48ch; margin: 20px 0 0; color: var(--muted); }
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 11px;
-      min-height: 50px;
-      padding: 12px 23px;
-      border: 1px solid transparent;
-      border-radius: 2px;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: .04em;
-      transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
-    }
-    .button:hover { transform: translateY(-2px); }
-    .button:focus-visible, a:focus-visible { outline: 3px solid var(--sky); outline-offset: 4px; }
-    .button-primary { color: var(--navy); background: var(--sand); box-shadow: 0 9px 22px rgba(1, 35, 59, .2); }
-    .button-primary:hover { background: #f0c77f; }
-    .button-outline { color: #fff; border-color: rgba(255,255,255,.58); }
-    .button-outline:hover { background: rgba(255,255,255,.1); }
-    .arrow { font-size: 18px; line-height: 1; }
-
-    /* Header */
-    .site-header {
-      position: absolute;
-      z-index: 10;
-      width: 100%;
-      color: #fff;
-      border-bottom: 1px solid rgba(255, 255, 255, .16);
-    }
-    .nav { display: flex; align-items: center; justify-content: space-between; min-height: 78px; }
-    .brand { display: flex; align-items: center; gap: 12px; font: 700 20px/1 "Noto Serif TC", serif; letter-spacing: .11em; }
-    .brand-mark {
-      display: grid;
-      width: 29px;
-      height: 29px;
-      place-items: center;
-      border: 1px solid var(--sky);
-      border-radius: 50%;
-      color: var(--sky);
-      font: 700 19px/1 "Playfair Display", serif;
-    }
-    .brand small { display: block; margin-top: 5px; color: rgba(255,255,255,.64); font: 600 8px/1 sans-serif; letter-spacing: .21em; }
-    .nav-links { display: flex; align-items: center; gap: 29px; font-size: 13px; font-weight: 500; }
-    .nav-links a { position: relative; padding: 6px 0; }
-    .nav-links a:not(.nav-cta)::after { content: ""; position: absolute; right: 0; bottom: 0; left: 0; height: 1px; background: var(--sky); transform: scaleX(0); transform-origin: right; transition: transform .22s; }
-    .nav-links a:not(.nav-cta):hover::after { transform: scaleX(1); transform-origin: left; }
-    .nav-cta { padding: 8px 16px !important; border: 1px solid rgba(255,255,255,.55); }
-    .nav-cta:hover { color: var(--navy); background: #fff; }
-    .menu-toggle { display: none; border: 0; color: #fff; background: transparent; }
-
-    /* Hero */
-    .hero { position: relative; min-height: 704px; overflow: hidden; color: #fff; background: var(--navy); }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: .36;
-      background: radial-gradient(circle at 76% 45%, rgba(55, 167, 212, .75), transparent 23%), linear-gradient(117deg, rgba(4,25,45,.22) 0 48%, rgba(5,47,78,.82) 78%);
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: -180px;
-      width: 760px;
-      height: 760px;
-      border: 1px solid rgba(153,220,240,.22);
-      border-radius: 50%;
-      box-shadow: 0 0 0 62px rgba(153,220,240,.045), 0 0 0 180px rgba(153,220,240,.025);
-    }
-    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.02fr .98fr; gap: 45px; align-items: center; min-height: 704px; padding: 122px 0 72px; }
-    .hero .eyebrow { color: var(--sky); }
-    .hero-title { max-width: 13ch; margin: 0; font: 900 clamp(42px, 5.5vw, 68px)/1.22 "Noto Serif TC", serif; letter-spacing: .075em; }
-    .hero-title .blue { color: var(--sky); }
-    .hero-lede { max-width: 42ch; margin: 26px 0 32px; color: rgba(255,255,255,.78); font-size: 16px; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; }
-    .hero-note { margin-top: 28px; color: rgba(255,255,255,.52); font-size: 11px; letter-spacing: .1em; }
-    .hero-art { position: relative; min-height: 453px; }
-    .sun { position: absolute; top: 2%; right: 14%; width: 166px; height: 166px; border-radius: 50%; background: #93d6e6; box-shadow: 0 0 65px rgba(145,215,233,.36); }
-    .mountain { position: absolute; right: -4%; bottom: 2%; width: 98%; height: 70%; clip-path: polygon(0 73%, 23% 42%, 37% 59%, 61% 10%, 73% 29%, 84% 0, 100% 37%, 100% 100%, 0 100%); background: linear-gradient(135deg, #0b7eac, #06446f 70%); opacity: .85; }
-    .mountain::after { content: ""; position: absolute; inset: 0; background: linear-gradient(155deg, transparent 38%, rgba(2,35,58,.72) 38.5% 100%); }
-    .coffee-vessel { position: absolute; z-index: 2; right: 17%; bottom: 0; width: 255px; filter: drop-shadow(0 22px 21px rgba(0,0,0,.23)); }
-    .dripper { position: relative; width: 205px; height: 132px; margin: 0 auto -5px; border: 4px solid #e9f8fa; border-top-width: 6px; border-radius: 10px 10px 44% 44%; background: linear-gradient(115deg, rgba(123,206,225,.5), rgba(26,118,161,.23)); clip-path: polygon(0 0,100% 0,78% 100%,22% 100%); }
-    .dripper::after { content: ""; position: absolute; inset: 18px 16px 0; border-top: 1px solid rgba(255,255,255,.6); border-left: 1px solid rgba(255,255,255,.25); transform: skewX(-17deg); }
-    .carafe { position: relative; width: 170px; height: 181px; margin: 0 auto; border: 4px solid #e9f8fa; border-radius: 9px 9px 39% 39% / 9px 9px 19% 19%; background: linear-gradient(90deg, rgba(110,211,229,.26), rgba(1,52,87,.52)); }
-    .carafe::before { content: ""; position: absolute; top: -16px; left: 27px; width: 108px; height: 20px; border: 4px solid #e9f8fa; border-bottom: 0; border-radius: 50% 50% 0 0; }
-    .carafe::after { content: ""; position: absolute; right: 16px; bottom: 24px; left: 16px; height: 60px; border-radius: 3px 3px 26px 26px; background: linear-gradient(90deg, rgba(133,67,26,.84), rgba(76,33,9,.92)); }
-    .art-label { position: absolute; z-index: 3; top: 50%; right: 2%; width: 114px; padding-left: 12px; border-left: 1px solid var(--sky); color: rgba(255,255,255,.78); font-size: 10px; line-height: 1.7; letter-spacing: .1em; }
-    .art-label strong { display: block; color: var(--sky); font: 600 20px/1 "Playfair Display", serif; }
-    .scroll-line { position: absolute; bottom: 23px; left: max(24px, calc((100% - 1120px) / 2)); z-index: 2; display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,.56); font-size: 10px; letter-spacing: .15em; }
-    .scroll-line::before { content: ""; width: 38px; height: 1px; background: currentColor; }
-
-    /* Intro */
-    .intro { padding: 118px 0; background: #fff; }
-    .intro-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(45px, 8vw, 105px); align-items: center; }
-    .intro-stamp { position: relative; min-height: 355px; }
-    .stamp-circle { position: absolute; inset: 13px auto auto 0; display: grid; width: 290px; height: 290px; place-items: center; border: 1px solid #9dd7e7; border-radius: 50%; color: var(--blue); text-align: center; }
-    .stamp-circle::before { content: ""; position: absolute; inset: 14px; border: 1px dashed #a5d9e6; border-radius: 50%; }
-    .stamp-circle strong { display: block; font: 700 43px/1 "Playfair Display", serif; letter-spacing: -.04em; }
-    .stamp-circle span { display: block; margin-top: 8px; font-size: 11px; font-weight: 700; letter-spacing: .14em; }
-    .stamp-card { position: absolute; right: 0; bottom: 0; width: 216px; padding: 21px 23px; color: #fff; background: var(--blue); box-shadow: var(--shadow); }
-    .stamp-card p { margin: 0; font-size: 12px; line-height: 1.8; }
-    .stamp-card b { display: block; margin-bottom: 8px; color: var(--sky); font: 600 12px/1 "Playfair Display", serif; letter-spacing: .14em; }
-    .intro .section-copy { font-size: 16px; }
-    .intro-link { display: inline-flex; gap: 10px; margin-top: 28px; padding-bottom: 4px; border-bottom: 1px solid var(--blue); color: var(--blue); font-size: 14px; font-weight: 700; }
-
-    /* Coffees */
-    .coffee-section { padding: 110px 0 120px; background: var(--mist); }
-    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 43px; }
-    .section-head .section-copy { max-width: 35ch; margin: 0; font-size: 14px; }
-    .coffee-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 19px; }
-    .coffee-card { position: relative; min-height: 384px; overflow: hidden; color: #fff; background: var(--navy); box-shadow: var(--shadow); }
-    .coffee-card::before { content: ""; position: absolute; right: -63px; bottom: -87px; width: 238px; height: 238px; border: 1px solid rgba(255,255,255,.29); border-radius: 50%; }
-    .coffee-card::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: linear-gradient(160deg, transparent 42%, rgba(0,0,0,.28)); pointer-events: none; }
-    .coffee-card:nth-child(2) { background: #106396; }
-    .coffee-card:nth-child(3) { background: #164c68; }
-    .coffee-content { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 384px; padding: 29px; }
-    .coffee-number { color: var(--sky); font: 600 13px/1 "Playfair Display", serif; letter-spacing: .08em; }
-    .coffee-origin { margin: auto 0 7px; color: rgba(255,255,255,.63); font-size: 11px; font-weight: 600; letter-spacing: .14em; }
-    .coffee-card h3 { margin: 0; font: 700 27px/1.35 "Noto Serif TC", serif; letter-spacing: .05em; }
-    .coffee-notes { margin: 11px 0 22px; color: rgba(255,255,255,.75); font-size: 13px; }
-    .coffee-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.25); }
-    .price { font-size: 14px; font-weight: 700; }
-    .add-button { padding: 5px 0; border: 0; color: #fff; background: none; font-size: 12px; font-weight: 700; letter-spacing: .07em; }
-    .add-button:hover { color: var(--sand); }
-
-    /* Brew process */
-    .brew { overflow: hidden; padding: 118px 0; background: #fff; }
-    .brew-grid { display: grid; grid-template-columns: .93fr 1.07fr; gap: clamp(44px, 9vw, 112px); align-items: center; }
-    .brew-visual { position: relative; min-height: 396px; border: 1px solid var(--line); background: linear-gradient(140deg, #f4fafb 0 50%, #e5f4f7 50%); }
-    .brew-visual::before { content: ""; position: absolute; top: 35px; left: 34px; width: 70px; height: 1px; background: var(--blue); box-shadow: 0 9px 0 var(--blue), 0 18px 0 var(--blue); }
-    .pour-ring { position: absolute; top: 71px; right: 48px; width: 240px; height: 240px; border: 35px solid rgba(12,91,149,.13); border-radius: 50%; }
-    .pour-ring::after { content: ""; position: absolute; top: 45px; left: 45px; width: 80px; height: 80px; border: 3px solid var(--blue); border-radius: 50%; }
-    .brew-v60 { position: absolute; bottom: 35px; left: 51%; width: 178px; height: 150px; border: 4px solid var(--blue); background: rgba(255,255,255,.54); clip-path: polygon(0 0,100% 0,73% 100%,27% 100%); transform: translateX(-50%); }
-    .brew-v60::before { content: ""; position: absolute; top: 14px; right: 16px; bottom: 0; left: 16px; border-left: 1px solid #8dcce0; border-right: 1px solid #8dcce0; transform: skewX(-11deg); }
-    .brew-caption { position: absolute; right: 25px; bottom: 21px; color: var(--blue); font: 600 10px/1.4 "Playfair Display", serif; letter-spacing: .13em; text-align: right; }
-    .brew-steps { display: grid; gap: 0; margin: 28px 0 0; padding: 0; list-style: none; }
-    .brew-steps li { display: grid; grid-template-columns: 43px 1fr; gap: 15px; padding: 17px 0; border-top: 1px solid var(--line); }
-    .brew-steps li:last-child { border-bottom: 1px solid var(--line); }
-    .step-no { color: var(--blue); font: 600 15px/1.7 "Playfair Display", serif; }
-    .step-copy b { display: block; font-size: 15px; }
-    .step-copy span { color: var(--muted); font-size: 13px; }
-
-    /* CTA and Footer */
-    .visit { position: relative; overflow: hidden; padding: 96px 0; color: #fff; background: var(--navy); text-align: center; }
-    .visit::before, .visit::after { content: ""; position: absolute; width: 370px; height: 370px; border: 1px solid rgba(117,198,232,.21); border-radius: 50%; }
-    .visit::before { top: -225px; left: -90px; }
-    .visit::after { right: -125px; bottom: -235px; }
-    .visit .wrap { position: relative; z-index: 1; }
-    .visit .eyebrow { justify-content: center; color: var(--sky); }
-    .visit .section-title { font-size: clamp(30px, 4vw, 45px); }
-    .visit p:not(.eyebrow) { max-width: 48ch; margin: 19px auto 28px; color: rgba(255,255,255,.73); }
-    .subscribe { display: flex; max-width: 500px; margin: 0 auto; border: 1px solid rgba(255,255,255,.5); }
-    .subscribe input { min-width: 0; flex: 1; padding: 13px 17px; border: 0; outline: none; color: #fff; background: transparent; }
-    .subscribe input::placeholder { color: rgba(255,255,255,.55); }
-    .subscribe button { padding: 0 22px; border: 0; color: var(--navy); background: var(--sand); font-size: 13px; font-weight: 700; white-space: nowrap; }
-    .subscribe button:hover { background: #f0c77f; }
-    footer { color: rgba(255,255,255,.67); background: #031c31; }
-    .footer-top { display: grid; grid-template-columns: 1.7fr 1fr 1fr; gap: 40px; padding: 58px 0 38px; }
-    .footer-brand { color: #fff; }
-    .footer-brand p { max-width: 31ch; margin: 16px 0 0; font-size: 13px; }
-    .footer-heading { margin: 0 0 15px; color: var(--sky); font-size: 11px; font-weight: 700; letter-spacing: .14em; }
-    .footer-list { margin: 0; padding: 0; list-style: none; font-size: 13px; }
-    .footer-list li + li { margin-top: 8px; }
-    .footer-list a:hover { color: #fff; }
-    .footer-bottom { display: flex; justify-content: space-between; gap: 24px; padding: 17px 0; border-top: 1px solid rgba(255,255,255,.14); color: rgba(255,255,255,.43); font-size: 11px; letter-spacing: .05em; }
-
-    .toast { position: fixed; right: 22px; bottom: 22px; z-index: 20; max-width: min(330px, calc(100% - 44px)); padding: 13px 18px; border-left: 3px solid var(--sand); color: #fff; background: var(--navy); box-shadow: var(--shadow); opacity: 0; pointer-events: none; transform: translateY(12px); transition: opacity .25s, transform .25s; font-size: 13px; }
-    .toast.show { opacity: 1; transform: translateY(0); }
-
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 820px) {
-      .nav { min-height: 68px; }
-      .menu-toggle { display: block; width: 42px; height: 42px; font-size: 23px; }
-      .nav-links { position: absolute; top: 68px; right: 0; left: 0; display: grid; gap: 0; max-height: 0; overflow: hidden; background: #05233c; transition: max-height .27s ease; }
-      .nav-links.open { max-height: 300px; border-top: 1px solid rgba(255,255,255,.12); }
-      .nav-links a { padding: 13px 24px; border-bottom: 1px solid rgba(255,255,255,.09); }
-      .nav-links .nav-cta { margin: 11px 24px; text-align: center; }
-      .hero, .hero-grid { min-height: 710px; }
-      .hero-grid { grid-template-columns: 1fr; padding-top: 115px; }
-      .hero-art { min-height: 278px; margin-top: -35px; }
-      .sun { right: 14%; width: 114px; height: 114px; }
-      .mountain { width: 82%; height: 92%; }
-      .coffee-vessel { right: 15%; transform: scale(.72); transform-origin: bottom right; }
-      .art-label { top: 44%; right: 1%; }
-      .intro-grid, .brew-grid { grid-template-columns: 1fr; }
-      .intro-stamp { max-width: 510px; width: 100%; }
-      .coffee-grid { grid-template-columns: 1fr 1fr; }
-      .coffee-card:last-child { grid-column: span 2; }
-      .footer-top { grid-template-columns: 1.4fr 1fr; }
-      .footer-brand { grid-column: span 2; }
-    }
-
-    @media (max-width: 560px) {
-      .wrap { width: min(100% - 34px, 1120px); }
-      .hero, .hero-grid { min-height: 680px; }
-      .hero-grid { padding-top: 100px; padding-bottom: 48px; }
-      .hero-title { font-size: 40px; }
-      .hero-lede { margin: 18px 0 23px; font-size: 14px; }
-      .hero-art { min-height: 240px; }
-      .art-label { display: none; }
-      .scroll-line { bottom: 12px; left: 17px; }
-      .intro, .coffee-section, .brew { padding: 76px 0; }
-      .stamp-circle { width: 245px; height: 245px; }
-      .stamp-card { width: 185px; padding: 16px; }
-      .section-head { display: block; }
-      .section-head .section-copy { margin-top: 15px; }
-      .coffee-grid { grid-template-columns: 1fr; }
-      .coffee-card, .coffee-card:last-child { grid-column: auto; min-height: 330px; }
-      .coffee-content { min-height: 330px; }
-      .brew-visual { min-height: 310px; }
-      .pour-ring { top: 48px; right: 25px; width: 190px; height: 190px; border-width: 27px; }
-      .visit { padding: 76px 0; }
-      .subscribe { display: block; border: 0; }
-      .subscribe input { width: 100%; border: 1px solid rgba(255,255,255,.5); }
-      .subscribe button { width: 100%; min-height: 48px; margin-top: 9px; }
-      .footer-top { grid-template-columns: 1fr; gap: 30px; }
-      .footer-brand { grid-column: auto; }
-      .footer-bottom { display: block; }
-      .footer-bottom span + span { display: block; margin-top: 6px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
-      .reveal { opacity: 1; transform: none; }
-    }
+    :root{--black:#10100f;--ink:#191817;--cream:#f2eee6;--paper:#e8e1d5;--milk:#f9f6ef;--brown:#775842;--muted:#aaa49b;--line:rgba(255,255,255,.16);--serif:"Noto Serif TC",serif;--sans:"DM Sans","Noto Sans TC",sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--black);color:var(--cream);font:15px/1.75 var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button,input{font:inherit}button,a{-webkit-tap-highlight-color:transparent}.wrap{width:min(1160px,calc(100% - 56px));margin:auto}.eyebrow{margin:0 0 17px;color:#c4a783;font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase}.serif{font-family:var(--serif)}.section-title{margin:0;font:600 clamp(34px,5vw,58px)/1.35 var(--serif);letter-spacing:.04em}.section-copy{max-width:48ch;color:#b6b0a6}.accent{color:#c5a680}.button{display:inline-flex;align-items:center;justify-content:center;gap:22px;min-height:52px;padding:0 23px;border:1px solid #c9ad8b;background:#c9ad8b;color:#171513;font-size:12px;font-weight:700;letter-spacing:.07em;transition:.25s}.button:hover{background:#e3c8a6;border-color:#e3c8a6;transform:translateY(-2px)}.button-quiet{background:transparent;color:var(--cream);border-color:rgba(255,255,255,.38)}.button-quiet:hover{background:rgba(255,255,255,.1);border-color:#fff}.arrow{font-size:18px}
+    .header{position:absolute;z-index:5;top:0;left:0;width:100%;border-bottom:1px solid rgba(255,255,255,.13)}.nav{height:82px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:12px;font:600 19px var(--serif);letter-spacing:.1em}.brand-icon{display:grid;place-items:center;width:34px;height:34px;border:1px solid #c9ad8b;border-radius:50%;color:#c9ad8b;font:600 13px var(--sans);letter-spacing:0}.brand small{display:block;margin-top:2px;color:#aaa49b;font:500 8px var(--sans);letter-spacing:.24em}.nav-links{display:flex;align-items:center;gap:34px;color:#e7e1d8;font-size:12px}.nav-links a:not(.nav-cta):hover{color:#d3b28b}.nav-cta{border-bottom:1px solid #c9ad8b;padding:6px 0;color:#d8c4ab}.menu-toggle{display:none;border:0;background:none;color:white;font-size:25px}
+    .hero{position:relative;min-height:760px;display:flex;align-items:center;overflow:hidden;background:radial-gradient(ellipse at 77% 43%,#4a392b 0,#29231d 22%,transparent 48%),linear-gradient(100deg,#11110f 0%,#11110f 50%,#1b1815 100%)}.hero:before{content:"";position:absolute;top:120px;right:7%;width:min(40vw,470px);aspect-ratio:1;border:1px solid rgba(211,181,146,.27);border-radius:50%;box-shadow:0 0 0 28px rgba(211,181,146,.035),0 0 0 82px rgba(211,181,146,.025)}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,16,15,.1) 35%,transparent 75%),linear-gradient(0deg,#10100f 0,transparent 19%);pointer-events:none}.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:30px;padding:130px 0 95px}.hero-copy{max-width:560px}.hero h1{margin:0;font:600 clamp(46px,6.5vw,78px)/1.35 var(--serif);letter-spacing:.065em}.hero h1 span{color:#d1b08b}.hero-lede{max-width:43ch;margin:22px 0 31px;color:#c1bbb1;font-size:15px}.hero-actions{display:flex;flex-wrap:wrap;gap:13px}.hero-meta{margin-top:37px;color:#807a72;font-size:10px;letter-spacing:.17em}.hero-art{position:relative;height:430px;display:grid;place-items:center}.halo{position:absolute;width:330px;height:330px;border-radius:50%;background:radial-gradient(circle,rgba(176,128,79,.25),rgba(176,128,79,.06) 55%,transparent 70%)}.cup{position:relative;width:240px;height:188px;margin-top:78px;border-radius:10px 10px 45% 45% / 8px 8px 27% 27%;background:linear-gradient(110deg,#eee8dc,#bcb4a7 38%,#f2ede5 62%,#928a80);box-shadow:inset -20px -7px 28px rgba(0,0,0,.26),0 32px 60px rgba(0,0,0,.45);transform:rotate(-7deg)}.cup:before{content:"";position:absolute;left:-9px;right:-9px;top:-12px;height:25px;border:8px solid #ded8cd;border-radius:50%;background:#23170f;box-shadow:inset 0 2px 7px #080706}.cup:after{content:"";position:absolute;right:-82px;top:38px;width:103px;height:88px;border:17px solid #c9c1b5;border-left:0;border-radius:0 55% 55% 0;transform:rotate(5deg)}.cup-mark{position:absolute;z-index:1;top:66px;left:0;right:0;text-align:center;color:#39332c;font:600 18px var(--serif);letter-spacing:.2em}.coffee-beans{position:absolute;bottom:26px;left:11%;width:54px;height:35px;border-radius:50%;background:linear-gradient(140deg,#6d452c,#24160e);transform:rotate(-28deg);box-shadow:50px 18px 0 -4px #382115,105px -8px 0 -9px #69452e,264px 12px 0 -4px #332015}.coffee-beans:after{content:"";position:absolute;left:25px;top:4px;width:2px;height:27px;background:#a27852;transform:rotate(28deg)}.art-note{position:absolute;right:0;bottom:52px;color:#b9aa97;font-size:10px;letter-spacing:.12em;writing-mode:vertical-rl}
+    .ticker{overflow:hidden;border-top:1px solid #312b25;border-bottom:1px solid #312b25;background:#171614}.ticker-inner{display:flex;justify-content:space-around;gap:24px;padding:17px 0;color:#b9a78f;font-size:10px;letter-spacing:.22em;white-space:nowrap}.ticker span:after{content:"✳";margin-left:34px;color:#80674d}
+    .story{padding:120px 0;background:var(--cream);color:var(--ink)}.story-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(52px,9vw,130px);align-items:center}.story-art{position:relative;min-height:430px;background:linear-gradient(145deg,#29221c,#5b4533 55%,#1d1915);overflow:hidden}.story-art:before{content:"";position:absolute;width:310px;height:310px;top:52px;left:50%;transform:translateX(-50%);border:1px solid rgba(229,211,186,.55);border-radius:50%;box-shadow:0 0 0 20px rgba(229,211,186,.06),0 0 0 55px rgba(229,211,186,.04)}.story-art:after{content:"濃";position:absolute;inset:0;display:grid;place-items:center;color:rgba(236,219,196,.83);font:500 126px var(--serif)}.story-label{position:absolute;z-index:1;left:24px;bottom:21px;color:#e8d5bd;font-size:9px;letter-spacing:.21em}.story .eyebrow{color:#806448}.story .section-copy{color:#655e55}.story-tag{display:inline-flex;margin-top:24px;padding:8px 12px;border:1px solid #b5a48e;color:#604c38;font-size:11px;letter-spacing:.1em}
+    .selection{padding:112px 0 120px;background:#171614}.section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:42px}.section-head .section-copy{max-width:38ch;margin:0;color:#a9a39a;font-size:13px}.beans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.bean-card{position:relative;min-height:400px;display:flex;flex-direction:column;justify-content:space-between;padding:25px;background:#23211e;border:1px solid #37322c;overflow:hidden;transition:transform .25s,border-color .25s}.bean-card:hover{transform:translateY(-5px);border-color:#9a7957}.bean-card:before{content:"";position:absolute;top:58px;right:-46px;width:205px;height:205px;border:1px solid rgba(199,166,128,.25);border-radius:50%;box-shadow:0 0 0 18px rgba(199,166,128,.035),0 0 0 46px rgba(199,166,128,.025)}.bean-top,.bean-bottom{position:relative;z-index:1}.bean-index{color:#c2a17c;font:500 11px var(--sans);letter-spacing:.15em}.bean-icon{position:absolute;right:23px;top:23px;display:grid;place-items:center;width:68px;height:68px;border-radius:50%;background:#392a1e;color:#d4b18a;font:500 26px var(--serif)}.bean-origin{margin:108px 0 7px;color:#9d9387;font-size:9px;letter-spacing:.2em}.bean-card h3{margin:0;font:600 25px var(--serif);letter-spacing:.08em}.bean-notes{margin:10px 0 22px;color:#bdb5a9;font-size:12px}.bean-bottom{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #49423a;padding-top:15px;color:#e3d5c3;font-size:11px}.bean-bottom span:last-child{color:#a98b6b}
+    .brew{padding:112px 0;background:#e8e1d5;color:#1b1916}.brew-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(50px,8vw,110px);align-items:center}.brew .eyebrow{color:#806448}.brew .section-copy{color:#655e55}.brew-visual{position:relative;min-height:410px;overflow:hidden;background:linear-gradient(135deg,#d6c8b4,#f4efe6 52%,#c3b099)}.brew-visual:before{content:"";position:absolute;width:260px;height:260px;top:45px;left:50%;transform:translateX(-50%);border:1px solid rgba(73,52,35,.35);border-radius:50%;box-shadow:0 0 0 24px rgba(73,52,35,.06),0 0 0 60px rgba(73,52,35,.04)}.brew-dripper{position:absolute;top:95px;left:50%;width:160px;height:135px;transform:translateX(-50%);clip-path:polygon(0 0,100% 0,74% 100%,26% 100%);background:linear-gradient(90deg,#39312a,#6d5b47,#332b24)}.brew-dripper:after{content:"";position:absolute;inset:13px 25px 0;border-left:1px solid #ad9a80;border-right:1px solid #ad9a80}.brew-stream{position:absolute;top:228px;left:50%;width:3px;height:54px;background:#775239}.brew-carafe{position:absolute;bottom:37px;left:50%;width:132px;height:113px;transform:translateX(-50%);border:3px solid rgba(67,52,39,.65);border-radius:8px 8px 36% 36%;background:linear-gradient(0deg,rgba(83,48,25,.8) 0 43%,rgba(255,255,255,.24) 44%)}.brew-caption{position:absolute;right:20px;bottom:16px;color:#574633;font-size:9px;letter-spacing:.16em}.steps{display:grid;gap:0;margin:28px 0 0;padding:0;list-style:none}.steps li{display:grid;grid-template-columns:45px 1fr;gap:12px;padding:16px 0;border-top:1px solid #c7b9a5}.steps li:last-child{border-bottom:1px solid #c7b9a5}.step-no{color:#8b6e4d;font:500 13px var(--sans)}.steps b{display:block;font-size:14px}.steps span span{color:#6d645a;font-size:12px}
+    .cta{position:relative;padding:94px 0;background:#211d19;text-align:center;overflow:hidden}.cta:before,.cta:after{content:"";position:absolute;width:300px;height:300px;border:1px solid rgba(200,168,130,.2);border-radius:50%}.cta:before{top:-205px;left:-85px}.cta:after{right:-95px;bottom:-220px}.cta .wrap{position:relative}.cta .eyebrow{color:#c7a780}.cta .section-title{font-size:clamp(32px,4vw,48px)}.cta p:not(.eyebrow){max-width:48ch;margin:18px auto 26px;color:#b6aea3}.cta a{margin-top:4px}footer{background:#10100f}.footer-main{display:flex;justify-content:space-between;gap:30px;padding:45px 0 35px}.footer-note{max-width:38ch;margin:14px 0 0;color:#918a81;font-size:12px}.footer-links{display:flex;gap:27px;align-items:center;color:#b8b0a4;font-size:11px}.footer-links a:hover{color:#d0ad83}.footer-bottom{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-top:1px solid #302d29;color:#777168;font-size:9px;letter-spacing:.1em}.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
+    @media(max-width:800px){.wrap{width:min(100% - 40px,1160px)}.nav{height:70px}.menu-toggle{display:block}.nav-links{position:absolute;top:70px;left:0;right:0;display:grid;gap:0;max-height:0;overflow:hidden;background:#171614;transition:max-height .25s}.nav-links.open{max-height:260px;border-bottom:1px solid #413a32}.nav-links a{padding:13px 22px;border-top:1px solid #302d29}.nav-cta{border:0!important}.hero{min-height:780px}.hero-grid{grid-template-columns:1fr;padding-top:130px;padding-bottom:80px}.hero-art{height:320px;margin-top:-16px}.hero:before{top:420px;right:18%;width:320px}.cup{transform:scale(.78) rotate(-7deg);margin-top:35px}.art-note{right:7%;bottom:30px}.story-grid,.brew-grid{grid-template-columns:1fr}.story-art{min-height:340px}.section-head{display:block}.section-head .section-copy{margin-top:14px}.beans-grid{grid-template-columns:1fr 1fr}.bean-card:last-child{grid-column:span 2;min-height:340px}.brew-visual{min-height:360px}.footer-main{display:block}.footer-links{margin-top:25px;flex-wrap:wrap}}
+    @media(max-width:540px){.wrap{width:calc(100% - 34px)}.hero{min-height:720px}.hero-grid{padding-top:119px;padding-bottom:65px}.hero h1{font-size:44px}.hero-lede{font-size:13px}.hero-art{height:270px}.hero:before{top:435px;right:8%;width:260px}.cup{transform:scale(.65) rotate(-7deg);margin-top:12px}.coffee-beans{left:4%;bottom:13px;transform:scale(.7) rotate(-28deg);transform-origin:left bottom}.ticker-inner{justify-content:flex-start}.story,.selection,.brew{padding:76px 0}.story-art{min-height:290px}.story-art:before{width:220px;height:220px;top:35px}.story-art:after{font-size:100px}.beans-grid{grid-template-columns:1fr}.bean-card,.bean-card:last-child{grid-column:auto;min-height:350px}.bean-origin{margin-top:90px}.brew-visual{min-height:320px}.cta{padding:74px 0}.footer-links{gap:15px}.footer-bottom{display:block}.footer-bottom span{display:block}.footer-bottom span+span{margin-top:7px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
   </style>
 </head>
 <body>
-  <header class="site-header" id="top">
-    <nav class="nav wrap" aria-label="主要導覽">
-      <a class="brand" href="#top" aria-label="回到藍天咖啡首頁">
-        <span class="brand-mark">B</span>
-        <span>藍天咖啡<small>BLUE SKY COFFEE</small></span>
-      </a>
-      <button class="menu-toggle" type="button" aria-label="開啟導覽選單" aria-expanded="false" aria-controls="navLinks">☰</button>
-      <div class="nav-links" id="navLinks">
-        <a href="#story">我們的堅持</a>
-        <a href="#coffee">本季選豆</a>
-        <a href="#brew">沖煮日常</a>
-        <a class="nav-cta" href="#visit">訂閱風味通信</a>
-      </div>
-    </nav>
-  </header>
-
+  <header class="header" id="top"><nav class="nav wrap" aria-label="主要導覽">
+    <a class="brand" href="#top" aria-label="牛奶咖啡首頁"><span class="brand-icon">M</span><span>牛奶咖啡<small>MILK COFFEE · ROASTERY</small></span></a>
+    <button class="menu-toggle" type="button" aria-label="開啟導覽選單" aria-expanded="false" aria-controls="navLinks">☰</button>
+    <div class="nav-links" id="navLinks"><a href="#story">品牌理念</a><a href="#beans">風味選豆</a><a href="#brew">沖煮指南</a><a class="nav-cta" href="#contact">找到你的濃度</a></div>
+  </nav></header>
   <main>
-    <section class="hero" aria-labelledby="heroTitle">
-      <div class="hero-grid wrap">
-        <div class="reveal">
-          <p class="eyebrow">HAND BREWED · SLOWLY ROASTED</p>
-          <h1 class="hero-title" id="heroTitle">讓風味，<br>在<span class="blue">藍天</span>下<br>慢慢抵達。</h1>
-          <p class="hero-lede">藍天咖啡為喜歡手沖的你，挑選值得細品的單一產區咖啡豆。從第一縷花香，到最後一口回甘，每一杯都有自己的晴朗天氣。</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#coffee">探索本季風味 <span class="arrow">→</span></a>
-            <a class="button button-outline" href="#story">認識藍天</a>
-          </div>
-          <p class="hero-note">TAIPEI · TAIWAN · EST. 2018</p>
-        </div>
-        <div class="hero-art" aria-hidden="true">
-          <div class="sun"></div>
-          <div class="mountain"></div>
-          <div class="coffee-vessel"><div class="dripper"></div><div class="carafe"></div></div>
-          <p class="art-label"><strong>92°C</strong>理想水溫<br>細細喚醒香氣</p>
-        </div>
-      </div>
-      <p class="scroll-line">SCROLL TO DISCOVER</p>
-    </section>
-
-    <section class="intro" id="story" aria-labelledby="storyTitle">
-      <div class="intro-grid wrap">
-        <div class="intro-stamp reveal" aria-hidden="true">
-          <div class="stamp-circle"><div><strong>慢一點，<br>更清楚。</strong><span>LET THE FLAVOUR SPEAK</span></div></div>
-          <div class="stamp-card"><b>BLUE SKY NOTE</b><p>一杯好咖啡，從來不是匆忙完成的事。</p></div>
-        </div>
-        <div class="reveal">
-          <p class="eyebrow">OUR PHILOSOPHY</p>
-          <h2 class="section-title" id="storyTitle">在一杯之間，<br>看見產地的<em>晴朗</em>。</h2>
-          <p class="section-copy">我們相信，精品咖啡的美好不該被複雜掩蓋。以小批次烘焙留住豆子的個性，再用穩定、誠實的手沖，讓風土與時間在杯中變得清晰。</p>
-          <p class="section-copy">給懂得放慢腳步的人，也給每一個想重新認識咖啡的人。</p>
-          <a class="intro-link" href="#brew">看看我們如何沖煮 <span>→</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="coffee-section" id="coffee" aria-labelledby="coffeeTitle">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <div><p class="eyebrow">SEASONAL SELECTION</p><h2 class="section-title" id="coffeeTitle">今天，想喝哪一片<em>藍天</em>？</h2></div>
-          <p class="section-copy">三款當季單品，為不同的晨光、午後與靜夜而選。</p>
-        </div>
-        <div class="coffee-grid">
-          <article class="coffee-card reveal">
-            <div class="coffee-content">
-              <span class="coffee-number">01 / BRIGHT</span>
-              <p class="coffee-origin">ETHIOPIA · YIRGACHEFFE</p>
-              <h3>衣索比亞<br>耶加雪菲</h3>
-              <p class="coffee-notes">白花、佛手柑、蜂蜜</p>
-              <div class="coffee-bottom"><span class="price">NT$ 520 / 200g</span><button class="add-button" type="button" data-coffee="衣索比亞・耶加雪菲">加入收藏 ＋</button></div>
-            </div>
-          </article>
-          <article class="coffee-card reveal">
-            <div class="coffee-content">
-              <span class="coffee-number">02 / JUICY</span>
-              <p class="coffee-origin">KENYA · KIRINYAGA</p>
-              <h3>肯亞<br>祈安布</h3>
-              <p class="coffee-notes">黑醋栗、洛神、葡萄柚</p>
-              <div class="coffee-bottom"><span class="price">NT$ 580 / 200g</span><button class="add-button" type="button" data-coffee="肯亞・祈安布">加入收藏 ＋</button></div>
-            </div>
-          </article>
-          <article class="coffee-card reveal">
-            <div class="coffee-content">
-              <span class="coffee-number">03 / ROUND</span>
-              <p class="coffee-origin">COLOMBIA · HUILA</p>
-              <h3>哥倫比亞<br>慧蘭</h3>
-              <p class="coffee-notes">黃桃、焦糖、可可尾韻</p>
-              <div class="coffee-bottom"><span class="price">NT$ 460 / 200g</span><button class="add-button" type="button" data-coffee="哥倫比亞・慧蘭">加入收藏 ＋</button></div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="brew" id="brew" aria-labelledby="brewTitle">
-      <div class="brew-grid wrap">
-        <div class="brew-visual reveal" aria-hidden="true">
-          <div class="pour-ring"></div><div class="brew-v60"></div><p class="brew-caption">V60 / 15G : 240ML<br>2'45''</p>
-        </div>
-        <div class="reveal">
-          <p class="eyebrow">A QUIET RITUAL</p>
-          <h2 class="section-title" id="brewTitle">把時間交給水，<br>讓咖啡說<em>自己的話</em>。</h2>
-          <p class="section-copy">不需要繁複儀式，只要三個安靜的步驟。每一個參數，都是為了讓你更靠近豆子原本的樣子。</p>
-          <ol class="brew-steps">
-            <li><span class="step-no">01</span><span class="step-copy"><b>研磨，先聞見期待</b><span>15g 中細研磨，讓香氣從指尖開始展開。</span></span></li>
-            <li><span class="step-no">02</span><span class="step-copy"><b>悶蒸，等待第一個呼吸</b><span>以 92°C 熱水浸潤 30 秒，喚醒甜感與層次。</span></span></li>
-            <li><span class="step-no">03</span><span class="step-copy"><b>注水，保持自己的節奏</b><span>穩定畫圈，讓 240ml 的清澈在 2 分 45 秒完成。</span></span></li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <section class="visit" id="visit" aria-labelledby="visitTitle">
-      <div class="wrap reveal">
-        <p class="eyebrow">THE BLUE SKY LETTER</p>
-        <h2 class="section-title" id="visitTitle">把下一杯好咖啡，<br>寄到你的日常裡。</h2>
-        <p>每月一封風味通信，分享新豆、沖煮靈感與只給會員的小小驚喜。</p>
-        <form class="subscribe" id="subscribeForm">
-          <input type="email" aria-label="電子郵件地址" placeholder="留下你的 Email" required>
-          <button type="submit">訂閱風味通信</button>
-        </form>
-      </div>
-    </section>
+    <section class="hero" aria-labelledby="heroTitle"><div class="hero-grid wrap"><div class="hero-copy reveal">
+      <p class="eyebrow">MILK COFFEE · SMALL BATCH ROASTED</p>
+      <h1 id="heroTitle">一口濃醇，<br>剛好是<span>日常</span>。</h1>
+      <p class="hero-lede">為喜愛親手沖煮的你，尋找飽滿濃厚、層次分明的好豆。從磨豆時的醇香，到杯底的悠長回甘，讓每一天都有一杯值得期待的咖啡。</p>
+      <div class="hero-actions"><a class="button" href="#beans">探索本月選豆 <span class="arrow">↗</span></a><a class="button button-quiet" href="#story">認識牛奶咖啡</a></div>
+      <p class="hero-meta">GOOD BEANS · SLOW BREW · FULL FLAVOUR</p>
+    </div><div class="hero-art" aria-hidden="true"><div class="halo"></div><div class="cup"><span class="cup-mark">牛奶咖啡</span></div><div class="coffee-beans"></div><span class="art-note">醇厚・圓潤・回甘</span></div></div></section>
+    <div class="ticker" aria-label="品牌特色"><div class="ticker-inner"><span>小批次新鮮烘焙</span><span>為沖煮而挑選</span><span>濃厚風味不妥協</span><span>一杯好咖啡的日常</span></div></div>
+    <section class="story" id="story"><div class="story-grid wrap"><div class="story-art reveal" role="img" aria-label="以深色與暖棕色呈現濃厚咖啡風味"><span class="story-label">A GOOD CUP, MADE YOUR WAY</span></div><div class="reveal"><p class="eyebrow">OUR POINT OF VIEW</p><h2 class="section-title">濃，不必<span class="accent">複雜</span>。<br>好喝，自己知道。</h2><p class="section-copy">牛奶咖啡相信，一杯真正過癮的咖啡，從挑對豆子開始。我們用細緻的烘焙帶出咖啡豆飽滿的可可、堅果與焦糖香氣，留住厚實口感，也讓尾韻乾淨回甘。</p><p class="section-copy">不論你習慣手沖、濾杯或法式濾壓，都能找到適合自己節奏的一款。好好沖一杯，是忙碌日常裡留給自己的小小講究。</p><span class="story-tag">嚴選產區・細緻烘焙・安心沖煮</span></div></div></section>
+    <section class="selection" id="beans"><div class="wrap"><div class="section-head reveal"><div><p class="eyebrow">THE ROASTER'S SELECTION</p><h2 class="section-title">今天，沖一杯<span class="accent">夠濃的</span>。</h2></div><p class="section-copy">從經典醇厚到明亮果香，三種風味輪廓，陪你找到最合拍的那一杯。</p></div><div class="beans-grid">
+      <article class="bean-card reveal"><div class="bean-top"><span class="bean-index">01 / DEEP & ROUND</span><span class="bean-icon">醇</span><p class="bean-origin">BRAZIL · CERRADO</p><h3>巴西・厚韻日常</h3><p class="bean-notes">黑巧克力、榛果、焦糖</p></div><div class="bean-bottom"><span>中深焙・口感厚實</span><span>200g　NT$ 420</span></div></article>
+      <article class="bean-card reveal"><div class="bean-top"><span class="bean-index">02 / SWEET & SILKY</span><span class="bean-icon">甜</span><p class="bean-origin">COLOMBIA · HUILA</p><h3>哥倫比亞・柔甜可可</h3><p class="bean-notes">奶油可可、熟果、紅糖</p></div><div class="bean-bottom"><span>中焙・圓潤順口</span><span>200g　NT$ 460</span></div></article>
+      <article class="bean-card reveal"><div class="bean-top"><span class="bean-index">03 / BOLD & BRIGHT</span><span class="bean-icon">香</span><p class="bean-origin">GUATEMALA · ANTIGUA</p><h3>瓜地馬拉・煙燻花香</h3><p class="bean-notes">黑糖、柑橘、可可尾韻</p></div><div class="bean-bottom"><span>中深焙・香氣飽滿</span><span>200g　NT$ 480</span></div></article>
+    </div></div></section>
+    <section class="brew" id="brew"><div class="brew-grid wrap"><div class="brew-visual reveal" role="img" aria-label="手沖咖啡器具與咖啡壺的插畫"><div class="brew-dripper"></div><div class="brew-stream"></div><div class="brew-carafe"></div><span class="brew-caption">A SLOW POUR, A FULLER CUP</span></div><div class="reveal"><p class="eyebrow">BREW IT YOUR WAY</p><h2 class="section-title">讓好豆子，<br>在手沖裡<span class="accent">慢慢醒來</span>。</h2><p class="section-copy">從一點熱水開始，耐心萃取豆子的甜與醇。試試這組簡單比例，再依喜好調整濃淡，沖出專屬你的日常風味。</p><ol class="steps"><li><span class="step-no">01</span><span><b>磨豆｜香氣從此刻開始</b><span>咖啡豆 15g，研磨至中細，準備好濾杯。</span></span></li><li><span class="step-no">02</span><span><b>悶蒸｜等咖啡呼吸一下</b><span>注入約 30ml 熱水，靜待 30 秒讓香氣釋放。</span></span></li><li><span class="step-no">03</span><span><b>注水｜穩穩沖出飽滿口感</b><span>以約 90°C 熱水分次注入至 225ml，約 2 分半完成。</span></span></li></ol></div></div></section>
+    <section class="cta" id="contact"><div class="wrap reveal"><p class="eyebrow">FIND YOUR DAILY CUP</p><h2 class="section-title">下一杯，就從<span class="accent">牛奶咖啡</span>開始。</h2><p>挑一款喜歡的風味，把新鮮烘焙的香氣帶進你的沖煮日常。</p><a class="button" href="#beans">挑選你的咖啡豆 <span class="arrow">↗</span></a></div></section>
   </main>
-
-  <footer>
-    <div class="footer-top wrap">
-      <div class="footer-brand"><a class="brand" href="#top"><span class="brand-mark">B</span><span>藍天咖啡<small>BLUE SKY COFFEE</small></span></a><p>為喜愛手沖咖啡的你，留下一段慢慢品味、微微放晴的時間。</p></div>
-      <div><p class="footer-heading">EXPLORE</p><ul class="footer-list"><li><a href="#story">我們的堅持</a></li><li><a href="#coffee">本季選豆</a></li><li><a href="#brew">沖煮日常</a></li></ul></div>
-      <div><p class="footer-heading">CONTACT</p><ul class="footer-list"><li><a href="mailto:hello@bluesky.coffee">hello@bluesky.coffee</a></li><li>台北市大安區晴朗路 18 號</li><li>每日 10:00 — 19:00</li></ul></div>
-    </div>
-    <div class="footer-bottom wrap"><span>© 2026 BLUE SKY COFFEE. ALL RIGHTS RESERVED.</span><span>BREW SLOW · LIVE BRIGHT</span></div>
-  </footer>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <footer><div class="wrap"><div class="footer-main"><div><a class="brand" href="#top"><span class="brand-icon">M</span><span>牛奶咖啡<small>MILK COFFEE · ROASTERY</small></span></a><p class="footer-note">為喜愛沖泡咖啡的你，細心挑選每一顆豆子。日常一杯，濃醇剛好。</p></div><nav class="footer-links" aria-label="頁尾導覽"><a href="#story">品牌理念</a><a href="#beans">風味選豆</a><a href="#brew">沖煮指南</a><a href="mailto:hello@milkcoffee.tw">聯絡我們</a></nav></div><div class="footer-bottom"><span>© 2026 MILK COFFEE. ALL RIGHTS RESERVED.</span><span>ROASTED WITH CARE · BREWED BY YOU</span></div></div></footer>
   <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.getElementById('navLinks');
-    menuToggle.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', open);
-      menuToggle.setAttribute('aria-label', open ? '關閉導覽選單' : '開啟導覽選單');
-      menuToggle.textContent = open ? '×' : '☰';
-    });
-    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.setAttribute('aria-label', '開啟導覽選單');
-      menuToggle.textContent = '☰';
-    }));
-
-    const toast = document.getElementById('toast');
-    let toastTimer;
-    function showToast(message) {
-      window.clearTimeout(toastTimer);
-      toast.textContent = message;
-      toast.classList.add('show');
-      toastTimer = window.setTimeout(() => toast.classList.remove('show'), 2600);
-    }
-    document.querySelectorAll('[data-coffee]').forEach(button => button.addEventListener('click', () => {
-      showToast(`已將「${button.dataset.coffee}」加入你的收藏。`);
-    }));
-    document.getElementById('subscribeForm').addEventListener('submit', event => {
-      event.preventDefault();
-      event.currentTarget.reset();
-      showToast('謝謝訂閱，下一封晴朗的風味通信即將寄出。');
-    });
-
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const revealItems = document.querySelectorAll('.reveal');
-    if (reducedMotion || !('IntersectionObserver' in window)) {
-      revealItems.forEach(item => item.classList.add('visible'));
-    } else {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: .12 });
-      revealItems.forEach(item => observer.observe(item));
-    }
+    const menuButton=document.querySelector('.menu-toggle');
+    const nav=document.getElementById('navLinks');
+    menuButton.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));menuButton.setAttribute('aria-label',open?'關閉導覽選單':'開啟導覽選單');menuButton.textContent=open?'×':'☰'});
+    nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('open');menuButton.setAttribute('aria-expanded','false');menuButton.setAttribute('aria-label','開啟導覽選單');menuButton.textContent='☰'}));
+    const items=document.querySelectorAll('.reveal');
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)){items.forEach(item=>item.classList.add('visible'))}
+    else{const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});items.forEach(item=>observer.observe(item))}
   </script>
 </body>
 </html>
